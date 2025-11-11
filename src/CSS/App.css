@@ -1,0 +1,67 @@
+.app-container {
+  min-height: 100vh;
+  background-color: white;
+}
+
+.professionals-section {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .professionals-section {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .professionals-section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.professionals-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.professionals-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.professionals-count {
+  color: #4b5563;
+  margin-top: 0.25rem;
+}
+
+.professionals-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.no-results-icon {
+  color: #9ca3af;
+  font-size: 3.75rem;
+  margin-bottom: 1rem;
+}
+
+.no-results-title {
+  font-size: 1.25rem;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.no-results-text {
+  color: #6b7280;
+}

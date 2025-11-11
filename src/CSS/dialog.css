@@ -1,0 +1,142 @@
+.dlg-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  opacity: 0;
+  animation: dlg-fade-in 0.2s forwards;
+}
+
+.dlg-content {
+  background: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  width: 100%;
+  max-width: calc(100% - 2rem);
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  z-index: 51;
+  display: grid;
+  gap: 1rem;
+  animation: dlg-zoom-in 0.25s ease forwards;
+}
+
+@media (min-width: 640px) {
+  .dlg-content {
+    max-width: 32rem;
+  }
+}
+
+/* Header e Footer Layout */
+.dlg-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .dlg-header {
+    text-align: left;
+  }
+}
+
+.dlg-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .dlg-footer {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+.dlg-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.dlg-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.dlg-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  opacity: 0.7;
+  border: none;
+  background: transparent;
+  border-radius: 0.25rem;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dlg-close:hover {
+  opacity: 1;
+}
+
+.dlg-close:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.dlg-close-icon {
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+}
+
+.dlg-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+/* SFX sombrinha para Modals */
+@keyframes dlg-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dlg-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes dlg-zoom-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

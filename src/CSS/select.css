@@ -1,0 +1,106 @@
+.select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+  width: 100%;
+  padding: 0 12px;
+  font-size: 14px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #f9fafb;
+
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Variações de tamanho */
+.select-trigger-sm {
+  height: 32px;
+}
+
+.select-trigger-default {
+  height: 36px;
+}
+
+/* Menu */
+.select-content {
+  position: absolute;
+  z-index: 50;
+
+  min-width: 128px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  overflow-y: auto;
+}
+
+/* Espaçamento interno do menu */
+.select-viewport {
+  padding: 4px;
+}
+
+
+.select-label {
+  font-size: 12px;
+  color: #6b7280;
+  padding: 4px 8px;
+}
+
+/* divisória entre seções */
+.select-separator {
+  height: 1px;
+  background-color: #d1d5db;
+  margin: 4px 0;
+}
+
+/* Itens do menu*/
+.select-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  position: relative;
+  padding: 4px 8px;
+  font-size: 14px;
+
+  cursor: default;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+}
+
+/* Estado hover ou focado */
+.select-item:hover,
+.select-item[data-highlighted] {
+  background-color: #f3f4f6;
+}
+
+/* ícone de check */
+.select-item-indicator {
+  position: absolute;
+  right: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botões de rolagem */
+.select-scroll-button {
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+  background-color: #ffffff;
+}
+
+/* Ícone  do select */
+.select-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}

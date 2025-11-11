@@ -1,0 +1,157 @@
+.filters-section {
+  background-color: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 2rem 0;
+}
+
+.filters-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Espaçamento */
+@media (min-width: 640px) {
+  .filters-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .filters-container {
+    padding: 0 2rem;
+  }
+}
+
+/* Filtros */
+.filters-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filters-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.filters-info {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.filters-icon {
+  margin-right: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+  color: #4b5563;
+}
+
+/* Especialidade */
+.filters-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .filters-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .filters-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.filters-query {
+  grid-column: span 5; 
+}
+
+@media (min-width: 1024px) {
+  .filters-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .filters-query {
+    grid-column: span 3;
+  }
+}
+
+/*  Pesquisa e ícone */
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  height: 1rem;
+  width: 1rem;
+}
+
+.input-field {
+  padding-left: 2.5rem;
+  width: 100%; 
+  min-width: 0;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;         /* BOOOLA */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-field:focus {
+  border-color: #2563eb;  
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  outline: none;
+}
+
+/* Botão de buscar */
+.filters-button {
+  width: 100%;
+  font-weight: 500;
+}
+
+@media (min-width: 1024px) {
+  .filters-button {
+    width: auto;
+    padding: 0.75rem 6rem;
+    align-self: flex-end;
+  }
+
+  .filters-grid {
+    align-items: end;
+  }
+}
+
+/* Abordagens */
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .approach-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .approach-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
