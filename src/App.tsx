@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { SearchFilters } from "./components/SearchFilters";
-import { ProfessionalCard, Professional } from "./components/ProfessionalCard";
+import { ProfessionalCard } from "./components/ProfessionalCard";
 import { ProfessionalModal } from "./components/ProfessionalModal";
 import { Footer } from "./components/Footer";
 import { mockProfessionals } from "./data/mockData";
