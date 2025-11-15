@@ -41,7 +41,7 @@ export default function Login() {
 
       <main className="login-main">
         <div className="login-card">
-          <h1 className="login-title">Bem-vindo especialista, ao Escuta Ativa</h1>
+          <h1 className="login-title">Bem-vindo ao Escuta Ativa, especialista!</h1>
 
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="form-group">
