@@ -19,7 +19,7 @@ export function Header() {
           <nav className="header-nav">
             <a href="#" className="nav-link">Profissionais</a>
             <a href="#" className="nav-link">Especialidades</a>
-            <a href="#" className="nav-link">Sobre</a>
+            <a href="/Sobre" className="nav-link">Sobre</a>
             <a href="#" className="nav-link">Contato</a>
           </nav>
 
