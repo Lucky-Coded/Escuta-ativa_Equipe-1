@@ -71,6 +71,13 @@ export default function Login() {
             <button type="submit" className="form-button" disabled={loading}>
               {loading ? "Entrando..." : "Entrar"}
             </button>
+
+            <button type="button" className="form-button" onClick={() => {
+                window.location.href = "/Cadastro";
+              }}
+            >
+              Cadastrar
+            </button>
           </form>
 
           <p className="forgot-password">
