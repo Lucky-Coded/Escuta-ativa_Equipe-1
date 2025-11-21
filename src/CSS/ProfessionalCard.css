@@ -1,0 +1,154 @@
+.pc-card {
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.pc-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.pc-card-content {
+  padding: 1.5rem;
+}
+
+/* Layout principal */
+.pc-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-top: 1rem;
+}
+
+/* Foto */
+.pc-photo {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 9999px; /* BOLA */
+  object-fit: cover;
+}
+
+/* Caixa de texto */
+.pc-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.pc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Nome do profissional */
+.pc-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* Título  */
+.pc-title {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+/* estrela */
+.pc-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.pc-star {
+  width: 1rem;
+  height: 1rem;
+  color: #facc15;
+  fill: #facc15;
+}
+
+/* Quantidade de avaliações */
+.pc-review-count {
+  color: #6b7280;
+}
+
+.pc-body {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Localização */
+.pc-location {
+  display: flex;
+  align-items: center;
+  color: #4b5563;
+  font-size: 0.875rem;
+}
+
+/* Ícones */
+.pc-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+}
+
+/* Badges */
+.pc-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.pc-badge {
+  font-size: 0.75rem;
+}
+
+/*   📄 Descrição */
+.pc-description {
+  color: #4b5563;
+  font-size: 0.875rem;
+  line-height: 1.4;
+
+  /* Limita a duas linhas  */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* experiência e ações */
+.pc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+}
+
+/* Experiência do profissional */
+.pc-experience {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Grupo de botões (telefone, email, etc.) */
+.pc-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+/* Botão individual de ação */
+.pc-action-btn {
+  padding: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ícone dentro do botão */
+.pc-action-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}

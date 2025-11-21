@@ -1,0 +1,175 @@
+
+.pm-modal {
+  max-width: 64rem; 
+  max-height: 90vh; 
+  overflow-y: auto;
+}
+
+.pm-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+}
+
+.pm-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.pm-photo {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%; 
+  object-fit: cover;  
+}
+
+.pm-header-content {
+  flex: 1;
+}
+
+.pm-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pm-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.pm-title {
+  font-size: 1.125rem;
+  color: #4b5563; 
+}
+
+.pm-location {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  color: #4b5563;
+}
+
+/* Ícones genéricos */
+.pm-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+}
+
+/* Avaliação e experiência */
+.pm-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pm-star {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #facc15;
+  fill: #facc15;
+}
+
+.pm-rating-value {
+  font-size: 1.125rem;
+}
+
+.pm-rating-count {
+  color: #6b7280;
+}
+
+/* Detalhes adicionais */
+.pm-details {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.pm-detail-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Contato e botões */
+.pm-contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.pm-contact-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Seções e textos */
+.pm-section-title {
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+}
+
+.pm-sub-title {
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+/* Texto descritivo (sobre) */
+.pm-description {
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* Layout em duas colunas */
+.pm-two-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Pro mobile */
+@media (min-width: 768px) {
+  .pm-two-column {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Listas de badges */
+.pm-badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pm-badge {
+  font-size: 0.875rem;
+}
+
+/* Formação  */
+.pm-education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pm-education-item {
+  display: flex;
+  align-items: flex-start;
+  color: #4b5563;
+}
+
+/* Bolinha de formação */
+.pm-bullet {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #9ca3af;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}

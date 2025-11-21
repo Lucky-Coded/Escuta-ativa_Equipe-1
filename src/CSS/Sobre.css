@@ -1,0 +1,161 @@
+.sobre-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #eff6ff, #ffffff, #dbeafe);
+}
+
+.sobre-main {
+  flex: 1;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.sobre-card {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  padding: 2rem;
+  border: 1px solid #bfdbfe;
+  transition: box-shadow 0.25s;
+}
+
+.sobre-card:hover {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+.sobre-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+}
+
+/* Ocultável */
+
+.collapsible {
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.sobre-text {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+
+.actions-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.toggle-btn,
+.like-btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Botão "Mostrar mais" */
+.toggle-btn {
+  background: #3b82f6;
+  color: white;
+}
+
+.toggle-btn:hover {
+  background: #2563eb;
+}
+
+/* Botão de like */
+.like-btn {
+  background: #e2e8f0;
+  color: #374151;
+}
+
+.like-btn:hover {
+  background: #cbd5e1;
+}
+
+.like-btn.liked {
+  background: #d1f7d1;
+  color: #166534;
+}
+
+.accordion-section {
+  background: #fff;
+  border-radius: 10px;
+  margin: 1.2rem auto;
+  max-width: 600px;
+  width: 100%;
+  padding: 0;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+  border: 1px solid #c7ddff;
+}
+
+.accordion-header {
+  width: 100%;
+  background: #f1f5f9;
+  border: none;
+  padding: 1rem 1.2rem;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: #1e293b;
+}
+
+.accordion-header:hover {
+  background: #e2e8f0;
+}
+
+.chev {
+  font-size: 1.4rem;
+}
+
+/* Conteúdo retrátil */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.accordion-inner {
+  padding: 1rem 1.2rem;
+  line-height: 1.7;
+  color: #374151;
+}
+
+/* Lista interna */
+.sobre-list li {
+  margin-bottom: 0.5rem;
+}
+
+
+@media (max-width: 600px) {
+  .sobre-card {
+    padding: 1.25rem;
+    max-width: 100%;
+  }
+
+  .sobre-title {
+    font-size: 1.6rem;
+  }
+
+  .accordion-section {
+    margin: 1rem 0;
+  }
+}
