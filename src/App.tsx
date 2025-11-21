@@ -9,6 +9,8 @@ import { mockProfessionals } from "./data/mockData";
 import "./CSS/App.css";
 
 export default function App() {
+
+  
   const [filters, setFilters] = useState({
     query: "",
     specialty: "",

@@ -20,7 +20,7 @@ export function Header() {
             <a href="#" className="nav-link">Profissionais</a>
             <a href="#" className="nav-link">Especialidades</a>
             <a href="/Sobre" className="nav-link">Sobre</a>
-            <a href="#" className="nav-link">Contato</a>
+            <a href="/Contato" className="nav-link">Contato</a>
           </nav>
 
           <div className="header-actions">
@@ -33,5 +33,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  );
+  );
 }
