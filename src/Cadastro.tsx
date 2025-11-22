@@ -4,14 +4,13 @@ import { Footer } from "./components/Footer";
 import "./CSS/Login.css";
 
 export default function Cadastro() {
-  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [nome, setNome] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // Função para gerar ID único
   const generateUniqueId = () => {
     return Date.now().toString() + Math.floor(Math.random() * 10000).toString();
   };
@@ -20,27 +19,26 @@ export default function Cadastro() {
     ev.preventDefault();
     setError(null);
 
-    if (!email.trim()) return setError("Por favor informe um email válido.");
-    if (!senha) return setError("Por favor informe uma senha.");
+    if (!email.trim()) return setError("Informe um email válido.");
+    if (!nome.trim()) return setError("Informe seu nome.");
+    if (!senha) return setError("Informe uma senha.");
     if (senha !== confirmaSenha) return setError("As senhas não conferem.");
 
     setLoading(true);
 
-    // Gera ID único
-    const uniqueID = generateUniqueId();
+    const id = generateUniqueId();
 
-    // Salva no localStorage para RegistroInfo usar
-    localStorage.setItem(
-      "escutaUser",
-      JSON.stringify({
-        id: uniqueID,
-        email,
-        username: nome,
-        password: senha,
-      })
-    );
+    const newUser = {
+      id,
+      username: nome,
+      email,
+      password: senha,
+      profileImage: null,
+    };
 
-    // Vai para a página de informações adicionais
+    localStorage.setItem("escutaUser", JSON.stringify(newUser));
+    localStorage.setItem("escutaUserID", id);
+
     setTimeout(() => {
       window.location.href = "/RegistroInfo";
     }, 500);
@@ -55,7 +53,17 @@ export default function Cadastro() {
           <h1 className="login-title">Criar Conta</h1>
 
           <form className="login-form" onSubmit={handleSubmit}>
-            
+
+            <div className="form-group">
+              <label className="form-label">Nome</label>
+              <input
+                type="text"
+                className="form-input"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+              />
+            </div>
+
             <div className="form-group">
               <label className="form-label">Email</label>
               <input
@@ -91,6 +99,7 @@ export default function Cadastro() {
             <button type="submit" className="form-button" disabled={loading}>
               {loading ? "Cadastrando..." : "Cadastrar"}
             </button>
+
           </form>
         </div>
       </main>

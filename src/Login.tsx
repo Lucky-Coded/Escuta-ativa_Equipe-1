@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { accounts } from "./data/accounts";
 import "./CSS/Login.css";
 
 export default function Login() {
@@ -10,29 +9,34 @@ export default function Login() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (ev: React.FormEvent) => {
+  const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     setError(null);
-
     setLoading(true);
 
-    setTimeout(() => {
-      const user = accounts.find(
-        (a) => a.email.toLowerCase() === email.toLowerCase() && a.password === password
-      );
+    try {
+      const res = await fetch("http://localhost:3001/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-      if (!user) {
-        setError("Email ou senha invalido.");
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.message || "Email ou senha inválido.");
         setLoading(false);
         return;
       }
 
-      try {
-        localStorage.setItem("escutaUser", JSON.stringify({ email: user.email, name: user.name }));
-      } catch (e) {}
+      localStorage.setItem("escutaUser", JSON.stringify(data.user));
 
       window.location.href = "/";
-    }, 500);
+    } catch (err: any) {
+      setError(err.message || "Erro na conexão com o servidor.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -72,7 +76,10 @@ export default function Login() {
               {loading ? "Entrando..." : "Entrar"}
             </button>
 
-            <button type="button" className="form-button" onClick={() => {
+            <button
+              type="button"
+              className="form-button"
+              onClick={() => {
                 window.location.href = "/Cadastro";
               }}
             >

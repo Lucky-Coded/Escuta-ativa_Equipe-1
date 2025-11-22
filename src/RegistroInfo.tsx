@@ -8,7 +8,6 @@ export default function RegistroInfo() {
     id: "",
     email: "",
     password: "",
-    confirmPassword: "",
     username: "",
     title: "",
     specialty: "",
@@ -29,19 +28,18 @@ export default function RegistroInfo() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  // 🔥 Puxa dados do Cadastro
   useEffect(() => {
-    const saved = localStorage.getItem("escutaUser");
-    if (saved) {
-      const user = JSON.parse(saved);
+    const userBasic = localStorage.getItem("escutaUser");
+    const storedID = localStorage.getItem("escutaUserID");
 
+    if (userBasic) {
+      const data = JSON.parse(userBasic);
       setFormData(prev => ({
         ...prev,
-        id: user.id || "",
-        email: user.email || "",
-        password: user.password || "",
-        confirmPassword: user.password || "",
-        username: user.username || "",
+        id: storedID || "",
+        username: data.username || "",
+        email: data.email || "",
+        password: data.password || "",
       }));
     }
   }, []);
@@ -68,47 +66,17 @@ export default function RegistroInfo() {
     setError(null);
     setSuccess(null);
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("As senhas não conferem.");
-      return;
-    }
-
     try {
       const payload = new FormData();
-
-      // ✅ Adiciona o ID primeiro
-      if (formData.id) payload.append("id", formData.id);
-
-      // Adiciona arquivos
-      if (formData.pfp) payload.append("pfp", formData.pfp);
-      if (formData.diplomas) {
-        Array.from(formData.diplomas).forEach(file => payload.append("diplomas", file));
+      for (const key in formData) {
+        if (key === "pfp" && formData.pfp) {
+          payload.append("pfp", formData.pfp);
+        } else if (key === "diplomas" && formData.diplomas) {
+          Array.from(formData.diplomas).forEach(file => payload.append("diplomas", file));
+        } else {
+          payload.append(key, (formData as any)[key]);
+        }
       }
-
-      // Adiciona campos restantes
-      const fields = [
-        "username",
-        "email",
-        "password",
-        "confirmPassword",
-        "title",
-        "specialty",
-        "approach",
-        "location",
-        "experience",
-        "description",
-        "languages",
-        "phone",
-        "contactEmail",
-        "whatsapp",
-        "disponibility",
-        "sessionType",
-      ];
-
-      fields.forEach(field => {
-        const value = (formData as any)[field];
-        if (value !== null && value !== undefined) payload.append(field, value);
-      });
 
       const res = await fetch("http://localhost:3001/register", {
         method: "POST",
@@ -118,15 +86,20 @@ export default function RegistroInfo() {
       const data = await res.json();
 
       if (res.ok) {
-        setSuccess(data.message);
+        setSuccess("Perfil atualizado com sucesso!");
 
-        // Limpar formulário
-        setFormData({
-          id: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-          username: "",
+        localStorage.setItem(
+          "escutaUser",
+          JSON.stringify({
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
+            profileImage: data.profileImage || null,
+          })
+        );
+
+        setFormData(prev => ({
+          ...prev,
           title: "",
           specialty: "",
           approach: "",
@@ -141,12 +114,12 @@ export default function RegistroInfo() {
           whatsapp: "",
           disponibility: "",
           sessionType: "",
-        });
+        }));
       } else {
-        setError(data.message || "Erro ao cadastrar usuário");
+        setError(data.message || "Erro ao registrar informações");
       }
     } catch (err: any) {
-      setError(err.message || "Erro na conexão com o servidor");
+      setError("Erro na conexão com o servidor");
     }
   };
 
@@ -156,14 +129,13 @@ export default function RegistroInfo() {
       <main className="login-main">
         <div className="login-card">
           <h1 className="login-title">Registro de Especialista</h1>
+
           <form
             id="registerForm"
             encType="multipart/form-data"
             className="login-form"
             onSubmit={handleSubmit}
           >
-            {/* Campo oculto do ID */}
-            <input type="hidden" name="id" value={formData.id} />
 
             <div className="form-group">
               <label className="form-label">Nome</label>
@@ -173,31 +145,17 @@ export default function RegistroInfo() {
                 value={formData.username}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="form-input"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Titulo</label>
+              <label className="form-label">Título</label>
               <input
                 type="text"
                 name="title"
                 value={formData.title}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               />
             </div>
 
@@ -208,7 +166,6 @@ export default function RegistroInfo() {
                 value={formData.specialty}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               >
                 <option value="" disabled>Selecione a especialidade</option>
                 <option value="iniciante">Iniciante</option>
@@ -224,7 +181,6 @@ export default function RegistroInfo() {
                 value={formData.approach}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               >
                 <option value="" disabled>Selecione a aproximação</option>
                 <option value="ativo">Ativo</option>
@@ -240,7 +196,6 @@ export default function RegistroInfo() {
                 value={formData.location}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               />
             </div>
 
@@ -252,20 +207,12 @@ export default function RegistroInfo() {
                 value={formData.experience}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               />
             </div>
 
-            {/* Foto de Perfil */}
             <div className="form-group">
               <label className="form-label">Imagem de Perfil</label>
-              <input
-                type="file"
-                name="pfp"
-                accept="image/*"
-                onChange={handleFilePfp}
-                className="form-input"
-              />
+              <input type="file" name="pfp" accept="image/*" onChange={handleFilePfp} className="form-input" />
               {formData.pfp && (
                 <img
                   src={URL.createObjectURL(formData.pfp)}
@@ -283,20 +230,12 @@ export default function RegistroInfo() {
                 value={formData.description}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               />
             </div>
 
-            {/* Diplomas */}
             <div className="form-group">
               <label className="form-label">Diplomas</label>
-              <input
-                type="file"
-                name="diplomas"
-                multiple
-                onChange={handleFileDiplomas}
-                className="form-input"
-              />
+              <input type="file" name="diplomas" multiple onChange={handleFileDiplomas} className="form-input" />
               {formData.diplomas && formData.diplomas.length > 0 && (
                 <div style={{ marginTop: 8, fontSize: "0.875rem", color: "#6b7280" }}>
                   {formData.diplomas.length} arquivo(s) selecionado(s)
@@ -311,7 +250,6 @@ export default function RegistroInfo() {
                 value={formData.languages}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               >
                 <option value="" disabled>Selecione os idiomas</option>
                 <option value="portugues">Português</option>
@@ -328,7 +266,6 @@ export default function RegistroInfo() {
                 value={formData.phone}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               />
             </div>
 
@@ -340,7 +277,6 @@ export default function RegistroInfo() {
                 value={formData.contactEmail}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               />
             </div>
 
@@ -352,7 +288,6 @@ export default function RegistroInfo() {
                 value={formData.whatsapp}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               />
             </div>
 
@@ -364,7 +299,6 @@ export default function RegistroInfo() {
                 value={formData.disponibility}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               />
             </div>
 
@@ -375,7 +309,6 @@ export default function RegistroInfo() {
                 value={formData.sessionType}
                 onChange={handleInputChange}
                 className="form-input"
-                required
               >
                 <option value="" disabled>Selecione o tipo de sessão</option>
                 <option value="online">Online</option>
@@ -391,7 +324,6 @@ export default function RegistroInfo() {
           </form>
         </div>
       </main>
-
       <Footer />
     </div>
   );
