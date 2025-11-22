@@ -1,0 +1,86 @@
+[
+  {
+    "username": "Fellipe",
+    "email": "",
+    "password": "",
+    "title": "Psicólogo familiar",
+    "specialty": "iniciante",
+    "approach": "ativo",
+    "location": "5",
+    "experience": "12",
+    "description": "Sou eu",
+    "languages": "portugues",
+    "phone": "1111",
+    "contactEmail": "1111@teste",
+    "whatsapp": "11112",
+    "disponibility": "11:30-20h",
+    "sessionType": "presencial",
+    "profileImage": "uploads\\1763767433980-f13ae6b292b586efa94d036230660665.jpg",
+    "diplomas": [
+      "uploads\\1763767433980-aad5b7679e48f6500b6467adbc83f1c6_720w.mp4"
+    ]
+  },
+  {
+    "username": "Otavio judas",
+    "email": "Otavio@saojudas",
+    "password": "adoroulife",
+    "title": "Fã da são judas",
+    "specialty": "iniciante",
+    "approach": "ativo",
+    "location": "casa",
+    "experience": "32",
+    "description": "descrição épica",
+    "languages": "portugues",
+    "phone": "222",
+    "contactEmail": "111@1",
+    "whatsapp": "123123",
+    "disponibility": "não",
+    "sessionType": "hibrido",
+    "profileImage": "uploads\\1763768271843-f13ae6b292b586efa94d036230660665.jpg",
+    "diplomas": [
+      "uploads\\1763768271873-a7d1131a006a0dd9887ff4076277098d.jpg"
+    ]
+  },
+  {
+    "username": "Antoni",
+    "email": "antonio@petmax",
+    "password": "gato",
+    "title": "Desocupado",
+    "specialty": "iniciante",
+    "approach": "inativo",
+    "location": "Bem atrás de você",
+    "experience": "9",
+    "description": "1",
+    "languages": "portugues",
+    "phone": "7",
+    "contactEmail": "6@53",
+    "whatsapp": "242",
+    "disponibility": "3434",
+    "sessionType": "online",
+    "profileImage": "uploads\\1763768512735-Imagem do WhatsApp de 2025-02-17 Ã (s) 19.25.50_4c57afa3.jpg",
+    "diplomas": [
+      "uploads\\1763768512735-541e619ed3571c0e7f016fbd8fa1170a.mp4"
+    ]
+  },
+  {
+    "username": "teste",
+    "email": "teste@deverdade",
+    "password": "123",
+    "title": "testandi",
+    "specialty": "iniciante",
+    "approach": "ativo",
+    "location": "1",
+    "experience": "2",
+    "description": "descrição daora",
+    "languages": "portugues",
+    "phone": "8",
+    "contactEmail": "9@adw",
+    "whatsapp": "111",
+    "disponibility": "545",
+    "sessionType": "presencial",
+    "profileImage": "uploads\\1763769784886-ead11b0c713fc7d61bac336ef5d0df21.jpg",
+    "diplomas": [
+      "uploads\\1763769784886-0f935fabc69d59cd83fe8ec7122011a9.jpg"
+    ]
+  }
+]

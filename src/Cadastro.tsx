@@ -11,26 +11,36 @@ export default function Cadastro() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // Função para gerar ID único
+  const generateUniqueId = () => {
+    return Date.now().toString() + Math.floor(Math.random() * 10000).toString();
+  };
+
   const handleSubmit = (ev: React.FormEvent) => {
     ev.preventDefault();
     setError(null);
 
-    if (!nome.trim()) return setError("Por favor informe seu nome.");
     if (!email.trim()) return setError("Por favor informe um email válido.");
     if (!senha) return setError("Por favor informe uma senha.");
     if (senha !== confirmaSenha) return setError("As senhas não conferem.");
 
     setLoading(true);
 
+    // Gera ID único
+    const uniqueID = generateUniqueId();
+
+    // Salva no localStorage para RegistroInfo usar
     localStorage.setItem(
       "escutaUser",
       JSON.stringify({
+        id: uniqueID,
         email,
         username: nome,
         password: senha,
       })
     );
 
+    // Vai para a página de informações adicionais
     setTimeout(() => {
       window.location.href = "/RegistroInfo";
     }, 500);
@@ -45,16 +55,7 @@ export default function Cadastro() {
           <h1 className="login-title">Criar Conta</h1>
 
           <form className="login-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label className="form-label">Nome Completo</label>
-              <input
-                type="text"
-                className="form-input"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-              />
-            </div>
-
+            
             <div className="form-group">
               <label className="form-label">Email</label>
               <input

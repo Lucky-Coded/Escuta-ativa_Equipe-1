@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import "./CSS/Login.css";
 
 export default function RegistroInfo() {
   const [formData, setFormData] = useState({
+    id: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -27,6 +28,23 @@ export default function RegistroInfo() {
 
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+
+  // 🔥 Puxa dados do Cadastro
+  useEffect(() => {
+    const saved = localStorage.getItem("escutaUser");
+    if (saved) {
+      const user = JSON.parse(saved);
+
+      setFormData(prev => ({
+        ...prev,
+        id: user.id || "",
+        email: user.email || "",
+        password: user.password || "",
+        confirmPassword: user.password || "",
+        username: user.username || "",
+      }));
+    }
+  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -57,15 +75,40 @@ export default function RegistroInfo() {
 
     try {
       const payload = new FormData();
-      for (const key in formData) {
-        if (key === "pfp" && formData.pfp) {
-          payload.append("pfp", formData.pfp);
-        } else if (key === "diplomas" && formData.diplomas) {
-          Array.from(formData.diplomas).forEach(file => payload.append("diplomas", file));
-        } else {
-          payload.append(key, (formData as any)[key]);
-        }
+
+      // ✅ Adiciona o ID primeiro
+      if (formData.id) payload.append("id", formData.id);
+
+      // Adiciona arquivos
+      if (formData.pfp) payload.append("pfp", formData.pfp);
+      if (formData.diplomas) {
+        Array.from(formData.diplomas).forEach(file => payload.append("diplomas", file));
       }
+
+      // Adiciona campos restantes
+      const fields = [
+        "username",
+        "email",
+        "password",
+        "confirmPassword",
+        "title",
+        "specialty",
+        "approach",
+        "location",
+        "experience",
+        "description",
+        "languages",
+        "phone",
+        "contactEmail",
+        "whatsapp",
+        "disponibility",
+        "sessionType",
+      ];
+
+      fields.forEach(field => {
+        const value = (formData as any)[field];
+        if (value !== null && value !== undefined) payload.append(field, value);
+      });
 
       const res = await fetch("http://localhost:3001/register", {
         method: "POST",
@@ -76,7 +119,10 @@ export default function RegistroInfo() {
 
       if (res.ok) {
         setSuccess(data.message);
+
+        // Limpar formulário
         setFormData({
+          id: "",
           email: "",
           password: "",
           confirmPassword: "",
@@ -116,6 +162,9 @@ export default function RegistroInfo() {
             className="login-form"
             onSubmit={handleSubmit}
           >
+            {/* Campo oculto do ID */}
+            <input type="hidden" name="id" value={formData.id} />
+
             <div className="form-group">
               <label className="form-label">Nome</label>
               <input
@@ -129,7 +178,19 @@ export default function RegistroInfo() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">Título</label>
+              <label className="form-label">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="form-input"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Titulo</label>
               <input
                 type="text"
                 name="title"
@@ -195,10 +256,23 @@ export default function RegistroInfo() {
               />
             </div>
 
+            {/* Foto de Perfil */}
             <div className="form-group">
               <label className="form-label">Imagem de Perfil</label>
-              <input type="file" name="pfp" accept="image/*" onChange={handleFilePfp} className="form-input" />
-              {formData.pfp && <img src={URL.createObjectURL(formData.pfp)} alt="preview" style={{ marginTop: 8, maxWidth: "100%", borderRadius: 6, maxHeight: 150 }} />}
+              <input
+                type="file"
+                name="pfp"
+                accept="image/*"
+                onChange={handleFilePfp}
+                className="form-input"
+              />
+              {formData.pfp && (
+                <img
+                  src={URL.createObjectURL(formData.pfp)}
+                  alt="preview"
+                  style={{ marginTop: 8, maxWidth: "100%", borderRadius: 6, maxHeight: 150 }}
+                />
+              )}
             </div>
 
             <div className="form-group">
@@ -213,9 +287,16 @@ export default function RegistroInfo() {
               />
             </div>
 
+            {/* Diplomas */}
             <div className="form-group">
               <label className="form-label">Diplomas</label>
-              <input type="file" name="diplomas" multiple onChange={handleFileDiplomas} className="form-input" />
+              <input
+                type="file"
+                name="diplomas"
+                multiple
+                onChange={handleFileDiplomas}
+                className="form-input"
+              />
               {formData.diplomas && formData.diplomas.length > 0 && (
                 <div style={{ marginTop: 8, fontSize: "0.875rem", color: "#6b7280" }}>
                   {formData.diplomas.length} arquivo(s) selecionado(s)
@@ -241,27 +322,61 @@ export default function RegistroInfo() {
 
             <div className="form-group">
               <label className="form-label">Telefone</label>
-              <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className="form-input" required />
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className="form-input"
+                required
+              />
             </div>
 
             <div className="form-group">
               <label className="form-label">Email de contato</label>
-              <input type="email" name="contactEmail" value={formData.contactEmail} onChange={handleInputChange} className="form-input" required />
+              <input
+                type="email"
+                name="contactEmail"
+                value={formData.contactEmail}
+                onChange={handleInputChange}
+                className="form-input"
+                required
+              />
             </div>
 
             <div className="form-group">
               <label className="form-label">WhatsApp</label>
-              <input type="tel" name="whatsapp" value={formData.whatsapp} onChange={handleInputChange} className="form-input" required />
+              <input
+                type="tel"
+                name="whatsapp"
+                value={formData.whatsapp}
+                onChange={handleInputChange}
+                className="form-input"
+                required
+              />
             </div>
 
             <div className="form-group">
               <label className="form-label">Disponibilidade</label>
-              <input type="text" name="disponibility" value={formData.disponibility} onChange={handleInputChange} className="form-input" required />
+              <input
+                type="text"
+                name="disponibility"
+                value={formData.disponibility}
+                onChange={handleInputChange}
+                className="form-input"
+                required
+              />
             </div>
 
             <div className="form-group">
               <label className="form-label">Tipo de Sessão</label>
-              <select name="sessionType" value={formData.sessionType} onChange={handleInputChange} className="form-input" required>
+              <select
+                name="sessionType"
+                value={formData.sessionType}
+                onChange={handleInputChange}
+                className="form-input"
+                required
+              >
                 <option value="" disabled>Selecione o tipo de sessão</option>
                 <option value="online">Online</option>
                 <option value="presencial">Presencial</option>
@@ -276,6 +391,7 @@ export default function RegistroInfo() {
           </form>
         </div>
       </main>
+
       <Footer />
     </div>
   );

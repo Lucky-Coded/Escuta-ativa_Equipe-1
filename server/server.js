@@ -33,7 +33,9 @@ app.post(
     console.log("REQ.BODY:", req.body);
     console.log("REQ.FILES:", req.files);
 
+    // 📌 Criar objeto do usuário incluindo ID
     const user = {
+      id: req.body.id,                                    // <-- ID VINDO DO REGISTRO
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
@@ -55,11 +57,19 @@ app.post(
         : [],
     };
 
+    // 📌 Carrega usuários existentes
     let users = [];
     if (fs.existsSync("./users.json")) {
       users = JSON.parse(fs.readFileSync("./users.json"));
     }
 
+    // 🔍 Evita ID duplicado (se quiser deixar)
+    const exists = users.some(u => u.id === user.id);
+    if (exists) {
+      return res.status(400).json({ message: "ID já existe!" });
+    }
+
+    // 📌 Adiciona e salva
     users.push(user);
     fs.writeFileSync("./users.json", JSON.stringify(users, null, 2));
 
