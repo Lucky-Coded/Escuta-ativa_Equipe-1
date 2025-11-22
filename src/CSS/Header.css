@@ -83,6 +83,7 @@
     display: flex;
   }
 }
+
 .header-user {
   position: relative;
   display: flex;
@@ -142,6 +143,7 @@
 .logout-btn:hover {
   background: #ddd;
 }
+
 .user-area {
   position: relative;
   display: flex;

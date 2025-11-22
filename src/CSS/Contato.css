@@ -1,55 +1,61 @@
-/* Container geral */
+
 .contato-container {
-  padding: 3rem 1.5rem;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: linear-gradient(to bottom right, #eff6ff, #ffffff, #dbeafe);
+  padding: 0 1.5rem 3rem;
   gap: 1rem;
 }
 
-/* Título */
-.contato-container h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--primary);
-  margin-bottom: 0.25rem;
-}
-
-.contato-subtitle {
-  font-size: 1rem;
-  color: var(--muted-foreground);
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-/* Card principal */
-.contato-info {
-  background-color: var(--card);
-  padding: 2rem 2.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  max-width: 680px;
+.contato-container > header,
+.contato-container > footer {
   width: 100%;
+  align-self: stretch;
+}
+
+.contato-info {
+  width: 100%;
+  max-width: 28rem;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  border: 1px solid #bfdbfe;
+  padding: 2rem;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* Cada item (E-mail, telefone, etc.) */
+.contato-container h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.contato-subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 .contato-item h2 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--primary);
+  color: #030213;
   margin-bottom: 0.35rem;
 }
 
 .contato-item p {
   font-size: 1rem;
-  color: var(--foreground);
+  color: #000000;
   line-height: 1.5;
 }
 
-/* Listagem redes sociais */
 .social-list {
   display: flex;
   flex-direction: column;
@@ -61,7 +67,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--primary);
+  color: #030213;
   font-size: 1.05rem;
   text-decoration: none;
   padding: 0.5rem 0.25rem;
@@ -69,16 +75,13 @@
   transition: 0.25s ease;
 }
 
-/* hover efeito */
 .social-list li a:hover {
-  background-color: var(--secondary);
-  color: var(--primary);
+  background-color: #e5e7eb;
   transform: translateX(4px);
 }
 
-/* Ícones */
 .icon {
   width: 24px;
   height: 24px;
-  color: var(--primary);
+  color: #030213;
 }
